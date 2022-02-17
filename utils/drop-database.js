@@ -34,3 +34,4 @@ const dropDatabase = async () => {
     }
 };
 
+dropDatabase();
