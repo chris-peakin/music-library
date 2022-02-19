@@ -56,12 +56,12 @@ exports.update = async (req, res) => {
   try {
     const [
        {affectedRows},
-      ] = await db.query('UPDATE Artist SET ?', [data, artistId]);
+      ] = await db.query('UPDATE Artist SET WHERE id = ?', [data, artistId]);
 
     if (!affectedRows){
       res.sendStatus(404);
     } else {
-      res.status(200).json(affectedRows);
+      res.status(200).send();
     }
   } catch (err) {
     console.log(err);

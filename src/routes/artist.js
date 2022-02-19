@@ -10,6 +10,6 @@ router.get('/', artistController.read);
 
 router.get('/:artistId', artistController.readSingle);
 
-router.patch('/', artistController.update);
+router.patch('/:artistId', artistController.update);
 
 module.exports = router;
