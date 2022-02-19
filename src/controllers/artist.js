@@ -19,31 +19,31 @@ exports.create = async (req, res) => {
     db.close();
   };
 
-  exports.read = async (_, res) => {
-    const db = await getDb();
+exports.read = async (_, res) => {
+  const db = await getDb();
 
-    try{
-      const [artists] = await db.query('SELECT * FROM Artist');
-      res.status(200).json(artists);
-    } catch (err){
-      console.log(err);
-      res.status(500).json(err);
-    }
-    db.close();
+  try{
+    const [artists] = await db.query('SELECT * FROM Artist');
+    res.status(200).json(artists);
+  } catch (err){
+    console.log(err);
+    res.status(500).json(err);
+  }
+  db.close();
+}
+
+exports.readSingle = async (req, res) =>{
+  const db = await getDb();
+  const { artistId } = req.params;
+  const [[artist]] = await db.query(`SELECT * FROM Artist WHERE id = ?`, [
+    artistId,
+  ]);
+
+  if (!artist){
+    res.sendStatus(404);
+  } else {
+    res.status(200).json(artist);
   }
 
-  exports.readSingle = async (req, res) =>{
-    const db = await getDb();
-    const { artistId } = req.params;
-    const [[artist]] = await db.query(`SELECT * FROM Artist WHERE id = ?`, [
-      artistId,
-    ]);
-
-    if (!artist){
-      res.sendStatus(404);
-    } else {
-      res.status(200).json(artist);
-    }
-
-    db.close();
-  }
+  db.close();
+}
