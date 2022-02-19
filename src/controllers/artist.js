@@ -19,16 +19,15 @@ exports.create = async (req, res) => {
     db.close();
   };
 
-  exports.read = async (req, res) => {
+  exports.read = async (_, res) => {
     const db = await getDb();
 
     try{
-      const arrayOfArrays = await db.query('SELECT * FROM Artist');
-      return arrayOfArrays[0];
-      res.sendStatus(200);
+      const [artists] = await db.query('SELECT * FROM Artist');
+      res.status(200).json(artists);
     } catch (err){
       console.log(err);
-      res.sendStatus(500).json(err);
+      res.status(500).json(err);
     }
     db.close();
   }
