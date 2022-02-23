@@ -25,7 +25,7 @@ const setUpDatabase = async () => {
 
     // connect to the database
     const db = CLEARDB_DATABASE_URL ? await mysql.createConnection(CLEARDB_DATABASE_URL) : 
-    {
+    await mysql.createConnection( {
       host: DB_HOST,
       user: DB_USER,
       password: DB_PASSWORD,
