@@ -69,3 +69,26 @@ exports.update = async (req, res) => {
   }
   db.close();
 }
+
+exports.delete = async (req, res) => {
+  const db = await getDb();
+  const {artistId} = req.params;
+  const [[artist]] = await db.query(`SELECT * FROM Artist WHERE id = ?`, [
+    artistId,
+  ]);
+
+  if(!artist){
+    res.sendStatus(404);
+  }
+
+  try {
+    await db.query('DELETE FROM Artist WHERE id = ?', [
+      artistId
+    ])
+    res.sendStatus(200);
+  } catch (err){
+    console.log(err)
+    res.sendStatus(404).json(err);
+  }
+  db.close();
+}
