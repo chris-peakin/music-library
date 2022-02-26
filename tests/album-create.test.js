@@ -6,7 +6,9 @@ const getDb = require('../src/services/db');
 
 describe('create album', () =>{
     let db;
-    beforeEach(async () => (db = await getDb()));
+    beforeEach(async () => {
+        db = await getDb()
+    });
 
     afterEach(async () => {
         await db.query('DELETE FROM Album');
@@ -19,7 +21,6 @@ describe('create album', () =>{
                 const res = await request(app).post('/album/:artistId/album').send({
                     name: 'The Slow Rush',
                     year: 2020,
-                    artistId: 1,
                 });
                 expect(res.status).to.equal(201);
 
