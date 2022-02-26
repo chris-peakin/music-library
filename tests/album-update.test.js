@@ -6,23 +6,33 @@ const app = require('../src/app');
 describe('update album', () => {
     let db;
     let albums;
+    let artists;
     beforeEach(async () => {
       db = await getDb();
+      await Promise.all([
+        db.query('INSERT INTO Artist (name, genre) VALUES (?, ?)', [
+            'Tame Impala',
+            'rock',
+        ])
+    ]);
+
+    [artists] = await db.query('SELECT * FROM Artist');
+
       await Promise.all([
         db.query('INSERT INTO Album (name, year, artistId) VALUES (?, ?, ?)', [
             'The Slow Rush',
             2020,
-            1,
+            artists[0].id,
         ]),
         db.query('INSERT INTO Album (name, year, artistId) VALUES (?, ?, ?)', [
             'Currents',
             2015,
-            1
+            artists[0].id,
         ]),
         db.query('INSERT INTO Album (name, year, artistId) VALUES (?, ?, ?)', [
             'Live Versions',
             2014,
-            1,
+            artists[0].id,
         ]),
     ]);
 
