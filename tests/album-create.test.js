@@ -25,10 +25,10 @@ describe('create album', () =>{
         await db.close();
     });
 
-    describe('/artist/:artistId/album', () => {
+    describe('/album', () => {
         describe('POST', () =>{
             it('creates a new album in the database', async () => {
-                const res = await request(app).post('/album/:artistId/album').send({
+                const res = await request(app).post('/album').send({
                     name: 'The Slow Rush',
                     year: 2020,
                     artistId: artists[0].id,
@@ -36,7 +36,7 @@ describe('create album', () =>{
                 expect(res.status).to.equal(201);
 
                 const [[albumEntries]] = await db.query(
-                    `SELECT * FROM Album WHERE name = 'The Slow Rush`
+                    `SELECT * FROM Album WHERE name = 'The Slow Rush'`
                 );
 
                 expect(albumEntries.name).to.equal('The Slow Rush');

@@ -41,6 +41,7 @@ describe('update album', () => {
 
     afterEach(async () => {
         await db.query('DELETE FROM Album');
+        await db.query('DELETE FROM Artist');
         await db.close();
     });
 
@@ -50,13 +51,15 @@ describe('update album', () => {
                 const album = albums[0];
                 const res = await request(app)
                     .patch(`/album/${album.id}`)
-                    .send({name: 'new name', year: 'new year', artistId: 'new artistId'});
+                    .send({name: 'new name', year: 2021, artistId: artists[0].id });
 
                 expect(res.status).to.equal(200);
 
-                const [[newAlbumRecord],] = await db.query('SELECT * FROM Album WHERE id = ?', [album.id]);
+                const [[newAlbumRecord]] = await db.query('SELECT * FROM Album WHERE id = ?', [album.id]);
 
                 expect(newAlbumRecord.name).to.equal('new name');
+                expect(newAlbumRecord.year).to.equal(2021);
+                expect(newAlbumRecord.artistId).to.equal(artists[0].id);
             });
 
             it('returns a 404 if the album is not in the database', async () =>{

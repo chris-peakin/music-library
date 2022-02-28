@@ -42,6 +42,7 @@ describe('read album', () => {
 
     afterEach(async () => {
         await db.query('DELETE FROM Album');
+        await db.query('DELETE FROM Artist');
         await db.close();
     });
 
@@ -66,7 +67,7 @@ describe('read album', () => {
         describe('GET', () => {
             it('returns a single album with the correct id', async () => {
                 const expected = albums[0];
-                const res = await request(app).get(`/artist/${expected.id}`).send();
+                const res = await request(app).get(`/album/${expected.id}`).send();
 
                 expect(res.status).to.equal(200);
                 expect(res.body).to.deep.equal(expected);

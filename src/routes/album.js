@@ -4,14 +4,14 @@ const albumController = require('../controllers/album.js');
 
 const router = express.Router();
 
-router.post('/artist/:artistId', albumController.create);
+router.post('/', albumController.create);
 
-router.get('/album', albumController.readSingle);
+router.get('/', albumController.read);
 
-router.get('/album/:albumId', albumController.read);
+router.get('/:albumId', albumController.readSingle);
 
-router.patch('/album/:albumId', albumController.update);
+router.patch('/:albumId', albumController.update);
 
-router.delete('/album/:albumId', albumController.delete);
+router.delete('/:albumId', albumController.delete);
 
 module.exports = router;

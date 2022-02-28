@@ -53,7 +53,7 @@ describe('delete album', () =>{
 
                   expect(res.status).to.equal(200);
 
-                  const [[deletedAlbumRecord],] = await db.query('SELECT * FROM ALBUM WHERE id = ?', [album.id]);
+                  const [[deletedAlbumRecord],] = await db.query('SELECT * FROM Album WHERE id = ?', [album.id]);
 
                   expect(!!deletedAlbumRecord).to.be.false;
               });
