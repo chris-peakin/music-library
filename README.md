@@ -15,5 +15,7 @@ Obviously, the contents of node_modules won't be included when you clone the rep
 ## Links
 
 Get Docker: https://docs.docker.com/get-docker/
+
 Get MySQLWorkbench: https://www.mysql.com/products/workbench/
+
 Get Postman: https://www.postman.com/
