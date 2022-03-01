@@ -15,7 +15,9 @@ Obviously, the contents of node_modules won't be included when you clone the rep
 In the command line, we also want to pull the Database Docker Image Northwind to make our container. We then want create the container using that image. The below assume we are using an M1 Mac, so `:m1` can be removed if you're not using an M1 Mac.
 
 `docker pull mcrcodes/northwind`
+
 `docker build -f ./M1/Dockerfile . -t mcrcodes/northwind:m1`
+
 `docker run -d -p 3307:3306 --name northwind -e MYSQL_ROOT_PASSWORD=password mcrcodes/northwind:m1`
 
 Note that the port `3307` and the password `MYSQL_ROOT_PASSWORD=password` can be changed if you like; the above are used as an example.
@@ -23,7 +25,9 @@ Note that the port `3307` and the password `MYSQL_ROOT_PASSWORD=password` can be
 You can then use MySQLWorkbench to connect to the database using the following credentials (using the above example):
 
 > Username: User
+
 > Port: 3307
+
 > Password: password
 
 ## Links
