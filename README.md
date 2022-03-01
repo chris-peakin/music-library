@@ -12,10 +12,33 @@ Obviously, the contents of node_modules won't be included when you clone the rep
 
 > npm install
 
+
+
 ## Links
+### Software to download
 
-Get Docker: https://docs.docker.com/get-docker/
+Docker: https://docs.docker.com/get-docker/
 
-Get MySQLWorkbench: https://www.mysql.com/products/workbench/
+MySQLWorkbench: https://www.mysql.com/products/workbench/
 
-Get Postman: https://www.postman.com/
+Postman: https://www.postman.com/
+
+### Dependencies
+
+MySQL2: https://www.npmjs.com/package/mysql2
+
+Express: https://expressjs.com/
+
+### Development Dependencies
+
+Chai: https://www.chaijs.com/guide/
+
+Dotenv: https://www.npmjs.com/package/dotenv
+
+ESLint: https://eslint.org/
+
+Mocha: https://mochajs.org/
+
+Nodemon: https://www.npmjs.com/package/nodemon
+
+Supertest: https://www.npmjs.com/package/supertest
