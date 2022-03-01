@@ -12,7 +12,7 @@ Obviously, the contents of node_modules won't be included when you clone the rep
 
 `npm install`
 
-In the command line, we also want to pull the Database Docker Image Northwind to make our container. We then want create the container using that image. The below assume we are using an M1 Mac, so `:m1` can be removed if you're not using an M1 Mac.
+In the command line, we also want to pull the Database Docker Image Northwind to make our container. We then want create the container using that image. The below assume we are using an M1 Mac, so `:m1` should be removed if you're not using an M1 Mac.
 
 `docker pull mcrcodes/northwind`
 
@@ -26,9 +26,21 @@ You can then use MySQLWorkbench to connect to the database using the following c
 
 > Username: User
 
-> Port: 3307
+> Port: 3307 (or whichever port you've written)
 
-> Password: password
+> Password: password (or which password you've written)
+
+Make sure the container is running before attempting to interact with the database or run the included tests.
+
+## Testing
+
+This repo also includes some basic CRUD (create, read, update, delete) tests for both artists and albums. At this stage, when an album is created, it is linked to its respective artist, so an artist needs to exist before an album can be assigned to that artist. The tests can be run by running the following in the terminal:
+
+`npm test`
+
+To put it simply, without going into too much detail about the relationships between tables: the albums know which artist they are assigned to, but the artists don't know what their albums are.
+
+If you want, you can take a look at the tests in the tests folder and add to them, but the current tests cover the rudimentary operations that we would typically like to do with the tables.
 
 ## Links
 ### Software to download
