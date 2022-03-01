@@ -30,6 +30,20 @@ You can then use MySQLWorkbench to connect to the database using the following c
 
 > Password: password (or which password you've written)
 
+Because the code uses `dotenv`, we need to create two files: `.env` and `.env.test`; these aren't committed to GitHub. These should contain the following: 
+
+ `DB_PASSWORD=password` (or what your choice of password is)
+
+ `DB_NAME=music_library_dev` in .env; `DB_NAME=music_library_test` in .env.test.
+
+ `DB_USER=user`
+
+ `DB_HOST=localhost`
+
+ `DB_PORT=3307` (or what your choice of port is)
+
+ `PORT=3000`
+
 Make sure the container is running before attempting to interact with the database or run the included tests.
 
 ## Testing
@@ -42,6 +56,44 @@ To put it simply, without going into too much detail about the relationships bet
 
 If you want, you can take a look at the tests in the tests folder and add to them, but the current tests cover the rudimentary operations that we would typically like to do with the tables.
 
+The code is setup in a way that a test database and test tables are created to perform the tests and then deleted when the tests are finished.
+
+## Using the Database
+
+We need to enter `npm start` in our terminal in order to:
+
+1. Create the database, the artist and album tables if they don't already exist. They won't be created again if they already exist.
+2. `GET`, `POST`, `PATCH` or `DELETE` requests using Postman.
+3. Make changes to the database using Node (ie. in the terminal).
+
+### Using MySQLWorkbench
+
+The syntax used by MySQLWorkbench is very simple to follow, and a link to the official documentation is provided below in the Links section. The test files also provide examples of commands that can be fed into a MySQLWorkbench query to manipulate the database. 
+
+Creating an artist:
+
+`INSERT INTO Artist (name, genre) VALUES ('Biffy Clyro', 'alternative')`
+
+`INSERT INTO Artist (name, genre) VALUES ('Within Temptation', 'metal')`
+
+Finding an artist by its ID:
+
+`SELECT * FROM Artist WHERE id = ?` (where ? is the artist's id number, which increases incrementally with each new artist added)
+
+Deleting an artist by its ID:
+
+`DELETE FROM Artist WHERE id = ?`
+
+### Using Postman
+
+`npm start` needs to have been run and Node needs to be running for Postman to be used to interact with the database.
+
+The App will listen on port 3000 by default by the code, but this can be changed if desired.
+
+As illustrated by the test files, `GET` requests are good for reading all artists/albums or an artist/album by its ID. `POST` requests can be used to create artists/albums. `PATCH` requests can be used to update artists/albums based on their ID. `DELETE` requests can be used to delete artists/albums based on their ID.
+
+If the ID is not required, `http://localhost:3000/artist` is where you send your request using Postman, and if it IS required `http://localhost:3000/artist/:artistid` where `:artistid` is the desired artist ID.
+
 ## Links
 ### Software to download
 
@@ -50,6 +102,10 @@ Docker: https://docs.docker.com/get-docker/
 MySQLWorkbench: https://www.mysql.com/products/workbench/
 
 Postman: https://www.postman.com/
+
+### MySQLWorkbench Syntax
+
+MySQLWorkbench Syntax: https://dev.mysql.com/doc/refman/8.0/en/dynindex-statement.html
 
 ### Dependencies
 
