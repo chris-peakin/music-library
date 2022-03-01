@@ -8,11 +8,11 @@ This is a simple API designed to create a library of music artists and albums. T
 
 Firstly, it would be best if you had Docker Desktop and MySQLWorkbench installed if you haven't already. Docker will allow you to run the container and use the command line to interact with the database. MySQLWorkbench will allow you to query the database without the command line. Postman is also needed as it will allow you to interact with the API.
 
-Obviously, the contents of node_modules won't be included when you clone the repo, but you can install the dependencies and dev_dependencies with:
+Obviously, the contents of node_modules won't be included when you clone the repo, but you can install the dependencies and dev_dependencies with the following in the terminal:
 
-> npm install
+`npm install`
 
-
+In the command line, we also want to pull the Database Docker Image
 
 ## Links
 ### Software to download
