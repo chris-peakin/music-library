@@ -6,10 +6,10 @@
   "scripts": {
     "prestart": "node utils/create-database.js",
     "pretest": "node utils/create-database.js test",
-    "start": "node index.js",
-    "start:dev": "nodemon -r dotenv/config index.js",
+    "start": "nodemon -r dotenv/config index.js",
+    "startprod": "node index.js",
     "test": "mocha tests/**/*.js --exit --recursive --timeout 60000 --file ./tests/test-setup.js",
-    "posttest": "node utils/drop-database.js"
+    "posttest": "node utils/drop-database.js test"
   },
   "repository": {
     "type": "git",
